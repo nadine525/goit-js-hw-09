@@ -25,6 +25,7 @@ const option = {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
       button.disabled = false;
+      clearInterval(counterId);
     }
   },
 };
@@ -65,7 +66,7 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, '0');
+  return value.toString().padStart(2, '0');
 }
 
 function changeCounter({ days, hours, minutes, seconds }) {

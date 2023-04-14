@@ -18,14 +18,11 @@ const option = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    const selectedDate = selectedDates[0];
-    const currentDate = new Date();
-
-    if (selectedDate < currentDate) {
+    if (selectedDates[0] < Date.now()) {
       Notiflix.Notify.failure('Please choose a date in the future');
-    } else {
+      return;
+    } else if (selectedDates[0] > Date.now()) {
       button.disabled = false;
-      clearInterval(counterId);
     }
   },
 };
@@ -43,7 +40,12 @@ const onClick = () => {
     // console.log(counterTime);
     changeCounter(counterTime);
 
-    if (counterTime < 0) {
+    if (
+      counterTime.days === 0 &&
+      counterTime.hours === 0 &&
+      counterTime.minutes === 0 &&
+      counterTime.seconds === 0
+    ) {
       clearInterval(counterId);
     }
   }, 1000);

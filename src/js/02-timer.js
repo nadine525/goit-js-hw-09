@@ -20,8 +20,7 @@ const option = {
   onClose(selectedDates) {
     if (selectedDates[0] < Date.now()) {
       Notiflix.Notify.failure('Please choose a date in the future');
-      return;
-    } else if (selectedDates[0] > Date.now()) {
+    } else {
       button.disabled = false;
     }
   },
@@ -76,4 +75,6 @@ function changeCounter({ days, hours, minutes, seconds }) {
   dataHours.textContent = addLeadingZero(hours);
   dataMinutes.textContent = addLeadingZero(minutes);
   dataSeconds.textContent = addLeadingZero(seconds);
+
+  input.disabled = true;
 }
